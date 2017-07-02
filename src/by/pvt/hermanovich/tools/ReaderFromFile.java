@@ -34,7 +34,7 @@ public class ReaderFromFile implements Messages {
 			DataBase.printListCoffee();
 			System.out.println(REPORT_READ_EMPTY_PACKAGES);
 			DataBase.printListEmptyPackages();
-			Packer packer = new Packer("Mary", 23, 800);
+			Packer packer = new Packer("Myself", 30, 800);
 			InitFilledCoffeePackage.createFilledCoffeePackage(packer);
 			System.out.println(REPORT_READ_FILLED_COFFEE_PACKAGES);
 			DataBase.printListFilledCoffeePackages();

@@ -8,7 +8,7 @@ import by.pvt.hermanovich.coffeetrailer.entities.interfaces.Messages;
 
 public final class CleanerOfFile implements Messages {
 	public static void cleanFile(File file) throws IOException {
-		try (FileWriter cleanerOfFile = new FileWriter(file);) {
+		try (FileWriter cleanerOfFile = new FileWriter(file)) {
 	    cleanerOfFile.write("");
     }
     catch (IOException e) {

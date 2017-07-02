@@ -25,7 +25,6 @@ public class CoffeeCreator implements Messages {
 
 	private static int sortNum;
 	private static int brandNum;
-	private static double buffWeight;
 
 	public static void createCoffee(String kind) {
 		BufferedReader reader = null;
@@ -44,18 +43,21 @@ public class CoffeeCreator implements Messages {
 
 	private static Double requestCoffeeWeight(BufferedReader reader) throws IOException {
 		System.out.print(ENTER_WEIGHT_OF_COFFEE);
-		try {
-			buffWeight = Double.parseDouble(reader.readLine());
-		}
-		catch (NumberFormatException e) {
-			System.out.println(ERR_COFFEE_OBJ);
-			Logger.log(e);
-			requestCoffeeWeight(reader);
-		}
-		double weight = buffWeight;
-		if (weight <= 0) {
-			System.out.println(ERR_COFFEE_OBJ);
-			requestCoffeeWeight(reader);
+		double weight;
+		while (true) {
+			try {
+				if ((weight = Double.parseDouble(reader.readLine())) <= 0) {
+					System.out.println(ERR_COFFEE_OBJ);
+					continue;
+				} else {
+					break;
+				}
+			}
+			catch (NumberFormatException e) {
+				System.out.println(ERR_COFFEE_OBJ);
+				Logger.log(e);
+				continue;
+			}
 		}
 		return weight;
 	}
