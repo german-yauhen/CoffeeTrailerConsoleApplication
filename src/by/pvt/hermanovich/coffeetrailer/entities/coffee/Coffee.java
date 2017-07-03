@@ -48,7 +48,6 @@ public abstract class Coffee {
 	 *          A brand of coffee. Takes from Enum.Brand
 	 * @param sort
 	 *          Sort of coffee. Takes from Enum.Sort
-	 * @param cost
 	 */
 	public Coffee(String kind, double weight, Sort sort, Brand brand) {
 		super();
@@ -131,7 +130,7 @@ public abstract class Coffee {
   }
 	
 	public String toString() {
-		return (kind + ", sort " + sort + ", manufactured by " + brand + ", cost per " + weight + "g" + " (without a package) is " + cost + " byn.");
+		return (kind + ", sort " + sort + ", manufactured by " + brand + ", cost per " + weight + "g" + " (without a package) is " + String.format("%.2f", cost) + " byn.");
 	}
 	
 }

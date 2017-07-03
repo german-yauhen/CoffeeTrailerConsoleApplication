@@ -47,9 +47,6 @@ public class FilledCoffeePackage implements Serializable {
 	 * the coffee package filled with coffee, using foregoing characters and new
 	 * objects (emptyPackage and coffee) as incoming arguments. This constructor
 	 * uses by Packer Class method which calculates full cost of coffee package.
-	 * 
-	 * @see by.pvt.hermanovich.coffeetrailer.entities.Packer.
-	 * @param id (static) A serial number of coffee package filled with coffee.
 	 * @param emptyPackage An incoming coffeePackage object.
 	 * @param coffee An incoming coffee object.
 	 */
@@ -100,8 +97,9 @@ public class FilledCoffeePackage implements Serializable {
 	}
 
 	public String toString() {
-		return ( "CoffeePackage #" + id + " (" + emptyPackage.getKind() + ")" + ": cost " + getCost() + " byn"
-														+ ", weight " + coffee.getWeight() + " g" + "; filled with " + coffee.getKind()
-														+ ", sort " + coffee.getSort() + ", manufactured by " + coffee.getBrand() );
+		return ( "CoffeePackage #" + id + " (" + emptyPackage.getKind() + ")" + ": cost "
+				+ String.format("%.2f", getCost()) + " byn"
+				+ ", weight " + coffee.getWeight() + " g" + "; filled with " + coffee.getKind()
+				+ ", sort " + coffee.getSort() + ", manufactured by " + coffee.getBrand() );
 	}
 }

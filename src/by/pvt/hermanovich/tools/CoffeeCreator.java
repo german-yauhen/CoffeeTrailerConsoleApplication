@@ -9,10 +9,7 @@
  * */
 package by.pvt.hermanovich.tools;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
+import java.io.*;
 import by.pvt.hermanovich.coffeetrailer.entities.coffee.Coffee;
 import by.pvt.hermanovich.coffeetrailer.entities.coffee.GrainCoffee;
 import by.pvt.hermanovich.coffeetrailer.entities.coffee.GroundCoffee;
@@ -22,9 +19,6 @@ import by.pvt.hermanovich.enums.Brand;
 import by.pvt.hermanovich.enums.Sort;
 
 public class CoffeeCreator implements Messages {
-
-	private static int sortNum;
-	private static int brandNum;
 
 	public static void createCoffee(String kind) {
 		BufferedReader reader = null;
@@ -63,67 +57,65 @@ public class CoffeeCreator implements Messages {
 	}
 
 	private static Sort requestCoffeeSort(BufferedReader reader) throws IOException {
-		System.out.println(CHOOSE_SORT_OF_COFFEE);
-		System.out.println(SORT_OF_COFFEE);
-		try {
-			sortNum = Integer.parseInt(reader.readLine());
-		}
-		catch (NumberFormatException e) {
-			System.out.println(CHOOSE_THE_CORRECT_SORT);
-			Logger.log(e);
-			requestCoffeeSort(reader);
-		}
-		if (sortNum < 1 || sortNum > 3) {
-			System.out.println(CHOOSE_THE_CORRECT_SORT);
-			requestCoffeeSort(reader);
-		}
-		Sort sort = null;
-		switch (sortNum) {
-			case 1:
-				sort = Sort.ARABICA;
+		System.out.println(CHOOSE_SORT_OF_COFFEE + SORT_OF_COFFEE);
+		Sort sort;
+		while (true) {
+			try {
+				int enterNumber = Integer.parseInt(reader.readLine());
+				switch (enterNumber) {
+					case 1:
+						sort = Sort.ARABICA;
+						break;
+					case 2:
+						sort = Sort.ROBUSTA;
+						break;
+					case 3:
+						sort = Sort.BLENDED;
+						break;
+					default:
+						System.out.println(CHOOSE_THE_CORRECT_SORT);
+						Logger.log(CHOOSE_THE_CORRECT_SORT);
+						continue;
+				}
 				break;
-			case 2:
-				sort = Sort.ROBUSTA;
-				break;
-			case 3:
-				sort = Sort.BLENDED;
-				break;
-			default:
+			} catch (NumberFormatException e) {
 				System.out.println(CHOOSE_THE_CORRECT_SORT);
-				break;
+				Logger.log(e);
+				continue;
+			}
 		}
 		return sort;
 	}
 
+
 	private static Brand requestCoffeeBrand(BufferedReader reader) throws IOException {
-		System.out.println(CHOOSE_BRAND_OF_COFFEE);
-		System.out.println(BRAND_OF_COFFEE);
-		try {
-			brandNum = Integer.parseInt(reader.readLine());
-		}
-		catch (NumberFormatException e) {
-			System.out.println(CHOOSE_THE_CORRECT_BRAND);
-			Logger.log(e);
-			requestCoffeeBrand(reader);
-		}
-		if (brandNum < 1 || brandNum > 3) {
-			System.out.println(CHOOSE_THE_CORRECT_BRAND);
-			requestCoffeeBrand(reader);
-		}
-		Brand brand = null;
-		switch (brandNum) {
-			case 1:
-				brand = Brand.ILLY;
+		System.out.println(CHOOSE_BRAND_OF_COFFEE + BRAND_OF_COFFEE);
+		Brand brand;
+		while (true) {
+			try {
+				int enterNumb = Integer.parseInt(reader.readLine());
+				switch (enterNumb) {
+					case 1:
+						brand = Brand.ILLY;
+						break;
+					case 2:
+						brand = Brand.LAVAZZA;
+						break;
+					case 3:
+						brand = Brand.COMPAGNIA_DELL_ARABICA;
+						break;
+					default:
+						System.out.println(CHOOSE_THE_CORRECT_BRAND);
+						Logger.log(Messages.CHOOSE_THE_CORRECT_BRAND);
+						continue;
+				}
 				break;
-			case 2:
-				brand = Brand.LAVAZZA;
-				break;
-			case 3:
-				brand = Brand.COMPAGNIA_DELL_ARABICA;
-				break;
-			default:
+			}
+			catch (NumberFormatException e) {
 				System.out.println(CHOOSE_THE_CORRECT_BRAND);
-				break;
+				Logger.log(e);
+				continue;
+			}
 		}
 		return brand;
 	}

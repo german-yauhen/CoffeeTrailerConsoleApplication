@@ -1,29 +1,18 @@
 package by.pvt.hermanovich.tools;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.NotSerializableException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.List;
-
 import by.pvt.hermanovich.coffeetrailer.entities.coffee.Coffee;
 import by.pvt.hermanovich.coffeetrailer.entities.coffeepackages.EmptyPackage;
 import by.pvt.hermanovich.coffeetrailer.entities.coffeepackages.FilledCoffeePackage;
 import by.pvt.hermanovich.coffeetrailer.entities.interfaces.Messages;
 
 public class Serialization implements Messages {
-	
-	private int answer;
-	
+
 	public void start() {
 		BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new InputStreamReader(System.in));
-			System.out.println(REQUEST_SERIALIZATION);
 			requestSerialization(reader);
 			System.out.println(REPORT_WRITE + OUTPUT_FOLDER + "***.ser files");
 		}
@@ -33,28 +22,28 @@ public class Serialization implements Messages {
 	}
 	
 	private void requestSerialization(BufferedReader reader) throws IOException {
-		try {
-			answer = Integer.parseInt(reader.readLine());
-		}
-		catch (NumberFormatException e) {
-			System.out.println(ERR_COFFEE_OBJ);
-			Logger.log(e);
-			requestSerialization(reader);
-		}
-		if (answer < 1 || answer > 2) {
-			System.out.println(ERR_COFFEE_OBJ);
-			requestSerialization(reader);
-		}
-		switch (answer) {
-			case 1:
-				coffeeSerialization(DataBase.listOfCoffee);
-				emptyPackagesSerialization(DataBase.listOfEmptyPackages);
-				filledCoffeePackagesSerialization(DataBase.listOfFilledCoffeePackages);
+		while (true) {
+			System.out.println(REQUEST_SERIALIZATION);
+			try {
+				int answer = Integer.parseInt(reader.readLine());
+				switch (answer) {
+					case 1:
+						coffeeSerialization(DataBase.listOfCoffee);
+						emptyPackagesSerialization(DataBase.listOfEmptyPackages);
+						filledCoffeePackagesSerialization(DataBase.listOfFilledCoffeePackages);
+						break;
+					case 2:
+						break;
+					default:
+						continue;
+				}
 				break;
-			case 2:
-				break;
-			default:
-				break;
+			}
+			catch (NumberFormatException e) {
+				System.out.println(ERR_COFFEE_OBJ);
+				Logger.log(e);
+				continue;
+			}
 		}
 	}
 
@@ -65,16 +54,13 @@ public class Serialization implements Messages {
 			for (FilledCoffeePackage filledCoffeePackage : listOfFilledCoffeePackages) {
 				objectOutputStream.writeObject(filledCoffeePackage);
 			}
-		}
-		catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			System.out.println(ERR_CREATE_FILE_OBJECT + e);
 			Logger.log(e);
-		}
-		catch (NotSerializableException e) {
+		} catch (NotSerializableException e) {
 			System.out.println(ERR_SERIALIZATION_OBJECT + e);
 			Logger.log(e);
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			Logger.log(e);
 		}
 	}
@@ -86,16 +72,13 @@ public class Serialization implements Messages {
 				for (EmptyPackage emptyPackage : listOfEmptyPackages) {
 					objectOutputStream.writeObject(emptyPackage);
 			}
-		}
-		catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			System.out.println(ERR_CREATE_FILE_OBJECT + e);
 			Logger.log(e);
-		}
-		catch (NotSerializableException e) {
+		} catch (NotSerializableException e) {
 			System.out.println(ERR_SERIALIZATION_OBJECT + e);
 			Logger.log(e);
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			System.out.println(e);
 			Logger.log(e);
 		}
@@ -107,20 +90,16 @@ public class Serialization implements Messages {
 		try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(serCoffeeFile))) {
 			for (Coffee coffee : listOfCoffee) {
 				objectOutputStream.writeObject(coffee);
-      }
-		}
-		catch (FileNotFoundException e) {
+			}
+		} catch (FileNotFoundException e) {
 			System.out.println(ERR_CREATE_FILE_OBJECT + e);
 			Logger.log(e);
-		}
-		catch (NotSerializableException e) {
+		} catch (NotSerializableException e) {
 			System.out.println(ERR_SERIALIZATION_OBJECT + e);
 			Logger.log(e);
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			System.out.println(e);
 			Logger.log(e);
 		}
 	}
-
 }

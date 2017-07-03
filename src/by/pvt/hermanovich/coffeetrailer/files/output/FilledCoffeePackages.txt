@@ -1,0 +1,3 @@
+CoffeePackage #3 (Parcel): cost 4,80 byn, weight 80.0 g; filled with Soluble Coffee, sort ROBUSTA, manufactured by COMPAGNIA_DELL_ARABICA
+CoffeePackage #1 (Box): cost 14,00 byn, weight 100.0 g; filled with Grain Coffee, sort ARABICA, manufactured by ILLY
+CoffeePackage #2 (Jar): cost 14,25 byn, weight 150.0 g; filled with Grind Coffee, sort BLENDED, manufactured by LAVAZZA

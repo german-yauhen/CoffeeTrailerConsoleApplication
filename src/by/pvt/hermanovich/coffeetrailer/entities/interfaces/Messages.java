@@ -15,7 +15,7 @@ public interface Messages {
 	public final String REQUEST_FOR = "Please, choose an empty package for ";
 	public final String NUM_COFFEE_OBJ = "How many kinds of coffee (objects) do you want to choose? ";
 	public final String ERR_COFFEE_OBJ = "\nYou've entered incorrect value. Please, try to enter a correct value again.";
-	public final String CHOOSE_KIND_OF_COFFEE = "\nNow you have to choose a new kind of coffee from list:";
+	public final String CHOOSE_KIND_OF_COFFEE = "\nNow you have to choose a new kind of coffee from list:\n";
 	public final String CHOOSE_KIND_OF_PACKAGE = "\nNow you have to choose an empty coffee package for the every kind of coffee you've chosen.";
 	public final String KIND_OF_COFFEE = "1 - Grain Coffee" + "\n"
 																						+ "2 - Grind Coffee"+ "\n"
@@ -23,13 +23,13 @@ public interface Messages {
 	public final String GRAIN = "Grain Coffee";
 	public final String GRIND = "Grind Coffee";
 	public final String SOLUBLE = "Soluble Coffee";
-	public final String CHOOSE_SORT_OF_COFFEE = "\nNow you have to choose a sort of coffee from list:";
+	public final String CHOOSE_SORT_OF_COFFEE = "\nNow you have to choose a sort of coffee from list:\n";
 	public final String SORT_OF_COFFEE = "1 - Arabica" + "\n"
 																						+ "2 - Robusta" + "\n"
 																						+ "3 - Blended";
 	public final String ERR_KIND_OF_COFFEE = "\nWrong kind of coffee.";
 	public final String WRONG_DATA = "\nYou've entered incorrect value. Please, try to enter a correct value again.";
-	public final String CHOOSE_BRAND_OF_COFFEE = "\nNow you have to choose a brand of coffee from list:";
+	public final String CHOOSE_BRAND_OF_COFFEE = "\nNow you have to choose a brand of coffee from list:\n";
 	public final String BRAND_OF_COFFEE = "1 - ILLY" + "\n"
 																							+ "2 - LAVAZZA" + "\n"
 																							+ "3 - COMPAGNIA DELL ARABICA";

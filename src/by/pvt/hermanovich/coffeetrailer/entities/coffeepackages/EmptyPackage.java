@@ -108,6 +108,6 @@ public abstract class EmptyPackage {
 	}
 
 	public String toString() {
-		return " " + kind + " (cost " + cost + " byn, capacity " + capacity + "g)";
+		return " " + kind + " (cost " + String.format("%.2f", cost) + " byn, capacity " + capacity + "g)";
 	}
 }

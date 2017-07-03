@@ -1,12 +1,7 @@
 package by.pvt.hermanovich.tools;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Iterator;
-
 import by.pvt.hermanovich.coffeetrailer.entities.coffee.Coffee;
 import by.pvt.hermanovich.coffeetrailer.entities.coffee.GrainCoffee;
 import by.pvt.hermanovich.coffeetrailer.entities.coffee.GroundCoffee;
@@ -61,17 +56,14 @@ public class ReaderFromFile implements Messages {
 				setBrandOfCoffee(tempCoffee, splitStringFromFile);
 				DataBase.listOfCoffee.add(tempCoffee);
 			}
-		}
-		catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			System.out.println("File not found..." + fileCoffeeInput.getName() + " To inspect available of the current file see the directiory src\\by\\pvt\\hermanovich\\coffeetrailer\\files\\input\\");
 			Logger.log(e);
 			throw e;
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			Logger.log(e);
 			System.out.println("There was an input-output error " + fileCoffeeInput.getName() + "For information see the file log.txt");
-		}
-		finally {
+		} finally {
 			try {
 				if (buffReader != null) {
 					buffReader.close();
@@ -97,27 +89,24 @@ public class ReaderFromFile implements Messages {
 			}
 			Iterator<EmptyPackage> it = DataBase.listOfEmptyPackages.iterator();
 			for (int i = 0; i < DataBase.listOfEmptyPackages.size(); i++) {
-					EmptyPackage tempPackage = it.next();
-					tempPackage.setCapacity(DataBase.listOfCoffee.get(i).getWeight());
-					if (tempPackage instanceof Box) {
-	          tempPackage.setCost(tempPackage.getCapacity() * Box.costPerGramm);
-          } else if (tempPackage instanceof Jar) {
-          	tempPackage.setCost(tempPackage.getCapacity() * Jar.costPerGramm);
-          } else if (tempPackage instanceof Parcel) {
-          	tempPackage.setCost(tempPackage.getCapacity() * Parcel.costPerGramm);
-          }
-      }	
-		}
-		catch (FileNotFoundException e) {
+				EmptyPackage tempPackage = it.next();
+				tempPackage.setCapacity(DataBase.listOfCoffee.get(i).getWeight());
+				if (tempPackage instanceof Box) {
+					tempPackage.setCost(tempPackage.getCapacity() * Box.costPerGramm);
+				} else if (tempPackage instanceof Jar) {
+					tempPackage.setCost(tempPackage.getCapacity() * Jar.costPerGramm);
+				} else if (tempPackage instanceof Parcel) {
+					tempPackage.setCost(tempPackage.getCapacity() * Parcel.costPerGramm);
+				}
+			}
+		} catch (FileNotFoundException e) {
 			System.out.println("File not found..." + fileCoffeeInput.getName() + " To inspect available of the current file see the directiory src\\by\\pvt\\hermanovich\\coffeetrailer\\files\\input\\");
 			Logger.log(e);
 			throw e;
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			Logger.log(e);
 			System.out.println("There was an input-output error " + fileCoffeeInput.getName() + "For information see the file log.txt");
-		}
-		finally {
+		} finally {
 			try {
 				if (buffReader != null) {
 					buffReader.close();

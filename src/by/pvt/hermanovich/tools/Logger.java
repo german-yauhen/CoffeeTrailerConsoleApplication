@@ -1,15 +1,8 @@
 package by.pvt.hermanovich.tools;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
 import by.pvt.hermanovich.coffeetrailer.entities.interfaces.Messages;
 
 public class Logger implements Messages {
@@ -44,40 +37,35 @@ public class Logger implements Messages {
 		}
 		finally {
 			try {
-	      if (writer != null) {
-	        writer.close();
-        }
-      }
-      catch (Exception e) {
-	      System.out.println("There is a closing thread error: " + e);
-	      Logger.log(e);
-      }
+				if (writer != null) {
+					writer.close();
+				}
+			} catch (Exception e) {
+				System.out.println("There is a closing thread error: " + e);
+				Logger.log(e);
+			}
 		}
 	}
 	
 	public static void log(final String logMessage) {
 		try {
-	   writer = new BufferedWriter(
+			writer = new BufferedWriter(
 	  		 				new OutputStreamWriter(
 	  		 						new FileOutputStream("src\\by\\pvt\\hermanovich\\coffeetrailer\\files\\log\\Log.txt", true), "utf-8"));
-	  SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-	  writer.write(sdf.format(Calendar.getInstance().getTime()));
-	  writer.write(logMessage);
-    }
-    catch (IOException e) {
-	    Logger.log(e);
-    }
-		finally {
+	  		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+	  		writer.write(sdf.format(Calendar.getInstance().getTime()));
+	  		writer.write(logMessage);
+    	} catch (IOException e) {
+	   		 Logger.log(e);
+   		} finally {
 			try {
-	      if (writer != null) {
-	        writer.close();
-        }
-      }
-      catch (Exception e) {
-      	System.out.println("There is a closing thread error: " + e);
-	      Logger.log(e);
-      }
+				if (writer != null) {
+					writer.close();
+				}
+			} catch (Exception e) {
+				System.out.println("There is a closing thread error: " + e);
+				Logger.log(e);
+			}
 		}
 	}
-	
 }

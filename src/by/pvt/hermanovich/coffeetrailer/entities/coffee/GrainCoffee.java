@@ -41,15 +41,12 @@ public class GrainCoffee extends Coffee implements Serializable {
 	 * 
 	 * @param kind
 	 *          Grain coffee.
-	 * @param weiht
+	 * @param weight
 	 *          A weight (quantity) of coffee.
 	 * @param sort
 	 *          Sort of coffee from Enum.Sort
 	 * @param brand
 	 *          A brand of coffee from Enum.Brands
-	 * @param cost
-	 *          A summary cost of grain coffee depends on a weight. Doesn't take
-	 *          part in a process to creating object of grain coffee.
 	 */
 	public GrainCoffee(String kind, double weight, Sort sort, Brand brand) {
 		super(kind, weight, sort, brand);
@@ -90,7 +87,7 @@ public class GrainCoffee extends Coffee implements Serializable {
   }
 	
 	public String toString() {
-		return (kind + ", sort " + sort + ", manufactured by " + brand + ", cost per " + weight + "g" + " (without a package) is " + cost + " byn.");
+		return (kind + ", sort " + sort + ", manufactured by " + brand + ", cost per " + weight + "g" + " (without a package) is " + String.format("%.2f", cost) + " byn.");
 	}
 
 }

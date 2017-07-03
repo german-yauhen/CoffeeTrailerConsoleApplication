@@ -1,8 +1,6 @@
 package by.pvt.hermanovich.tools;
 
-
 public class CreatorFromDialog {
-
 	public void start() {
 		InitCoffee initCoffee = new InitCoffee();
 		initCoffee.start();
@@ -11,5 +9,4 @@ public class CreatorFromDialog {
 		InitFilledCoffeePackage initFilledCoffeePackage = new InitFilledCoffeePackage();
 		initFilledCoffeePackage.start();
 	}
-	
 }

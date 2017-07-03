@@ -47,9 +47,6 @@ public class GroundCoffee extends Coffee implements Serializable {
 	 *          Sort of coffee from Enum.Sort
 	 * @param brand
 	 *          A brand of coffee from Enum.Brands
-	 * @param cost
-	 *          A summary cost of grind coffee depends on a weight. Doesn't take
-	 *          part in a process to creating object of grind coffee.
 	 */
 	public GroundCoffee(String kind, double weight, Sort sort, Brand brand) {
 		super(kind, weight, sort, brand);
@@ -87,6 +84,6 @@ public class GroundCoffee extends Coffee implements Serializable {
 	}
 
 	public String toString() {
-		return (kind + ", sort " + sort + ", manufactured by " + brand + ", cost per " + weight + "g" + " (without a package) is " + cost + " byn.");
+		return (kind + ", sort " + sort + ", manufactured by " + brand + ", cost per " + weight + "g" + " (without a package) is " + String.format("%.2f", cost) + " byn.");
 	}
 }
